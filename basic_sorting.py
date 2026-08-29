@@ -39,14 +39,59 @@ class sort:
 
             self.arr[j + 1] = key # insert into right position  
 
-            
+
+    def quickSort(self, low : int , high : int) -> None:
+        if low < high:
+            partition = self._partition(low, high) # it will place the number in correct position return the index of the corrent pivot 
+
+            # left side 
+            self.quickSort(low, partition - 1)
+            # right side 
+            self.quickSort(partition + 1, high)
+
+    def _partition(self, low: int, high: int) -> int:
+        pivot = self.arr[high] # right side number 
+
+        i = low 
+        j = low 
+
+        while j < high:
+            if self.arr[j] <= pivot:
+                self.arr[i], self.arr[j] = self.arr[j], self.arr[i]
+                i+=1
+            j+=1
+
+        # swap with the pivot 
+        self.arr[i], self.arr[high] = self.arr[high], self.arr[i]
+
+        return i
 
 
+    # def quicksort(self, arr):
+    #     if len(arr) <=1 : return arr
+    #     p = arr[-1]
+
+    #     low = []
+    #     middle = []
+    #     high = []
+
+    #     for num in arr:
+    #         if num < p: low.append(num)
+    #         elif num > p: high.append(num)
+    #         else: middle.append(num) 
+
+
+    #     return self.quicksort(low) + middle + self.quicksort(high) 
+
+
+    
     def printList(self) -> None:
         print(f"Your list is : {self.arr}") 
 
 s = sort([4,3,2,6,1,0])
 # s.bubbleSort()
 # s.selectionSort()
-s.insertionSort()
+# s.insertionSort()
+s.quickSort(0, len(s.arr) - 1)
+# print(s.quicksort(s.arr))
 s.printList()
