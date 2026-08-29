@@ -39,7 +39,7 @@ class sort:
 
             self.arr[j + 1] = key # insert into right position  
 
-
+    # Time - O(nlogn)
     def quickSort(self, low : int , high : int) -> None:
         if low < high:
             partition = self._partition(low, high) # it will place the number in correct position return the index of the corrent pivot 
