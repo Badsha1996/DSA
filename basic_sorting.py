@@ -84,7 +84,34 @@ class sort:
     #     return self.quicksort(low) + middle + self.quicksort(high) 
 
 
+    def mergeSort(self, arr):
+        if len(arr) <= 1: return arr
+
+        mid = len(arr) // 2
+
+        left = self.mergeSort(arr[:mid])
+        right = self.mergeSort( arr[mid:])
+
+        return self.merge(left, right)
+
+    def merge(self, arr1, arr2): 
+        merged = []
+        i = 0
+        j = 0
+
+        while i < len(arr1) and j < len(arr2):
+            if arr1[i] <= arr2[j]:
+                merged.append(arr1[i])
+                i+=1
+            else:
+                merged.append(arr2[j])
+                j+=1
     
+        if i<len(arr1): merged.extend(arr1[i:])
+        if j<len(arr2): merged.extend(arr2[j:])
+        
+        return merged
+
     def printList(self) -> None:
         print(f"Your list is : {self.arr}") 
 
@@ -92,6 +119,7 @@ s = sort([4,3,2,6,1,0])
 # s.bubbleSort()
 # s.selectionSort()
 # s.insertionSort()
-s.quickSort(0, len(s.arr) - 1)
+# s.quickSort(0, len(s.arr) - 1)
 # print(s.quicksort(s.arr))
-s.printList()
+print(s.mergeSort(s.arr))
+# s.printList()
